@@ -12,20 +12,26 @@ import UIKit
 import CoreLocation
 import MapKit
 
+// TODO: programmatically connect map to navigation controller to collectionview controller, which leads to detailed view of an entry.
+
 class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate{
     
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager();
-    
+    var coord = CLLocationCoordinate2D();
     // let userLocation = CLLocation();
+    @IBAction func whereAmI(_ sender: UIButton) {
+        mapView.setCenter(coord, animated: true)
+        // TODO: use setRegion to animate!
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         mapView.delegate = self
-        mapView.showsUserLocation = true
+        mapView.showsUserLocation = false
         mapView.mapType = MKMapType(rawValue: 0)! // case standard
         mapView.userTrackingMode = MKUserTrackingMode(rawValue: 1)! // case follow
 
@@ -34,7 +40,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        print(CLLocationManager.locationServicesEnabled())
+        // print(CLLocationManager.locationServicesEnabled())
 
         /*
         var anView:MKAnnotationView = MKAnnotationView()
@@ -57,7 +63,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         // we know there is at least 1 element in the array!
         // userLocation = locations.last!
         // lat="38.63779096" lon="-90.3429794">
-        let coord = locations.last!.coordinate;
+        coord = locations.last!.coordinate;
 
         if lastAnnotation != nil{
             var myHomePin = MKPointAnnotation();
@@ -135,6 +141,10 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             // perhaps use "UIImage" average color as a preview.
             // radius to define visible area. Freshness (updated time) to define the size.
             anView?.canShowCallout = true
+            // whole bubble as a clickable
+            //https://github.com/koogawa/MKMapViewSample/blob/master/MKMapViewSample/ImageViewController.swift
+            let rightButton: AnyObject! = UIButton(type: UIButtonType.detailDisclosure)
+            anView?.rightCalloutAccessoryView = rightButton as? UIView
         }
         else {
             //we are re-using a view, update its annotation reference...
@@ -145,7 +155,11 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     }
     
-    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView{
+            performSegue(withIdentifier: "collectionViewController", sender: self);
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -161,10 +175,10 @@ extension CLPlacemark {
     
     var compactAddress: String? {
         if let name = name {
-            var result = name
-            
+            // var result = name
+            var result = ""
             if let street = thoroughfare {
-                result += ", \(street)"
+                result += "\(street)"
             }
             
             if let city = locality {
