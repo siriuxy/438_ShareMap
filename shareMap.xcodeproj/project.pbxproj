@@ -14,6 +14,11 @@
 		3CB5DDA11E98196500773563 /* shareMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB5DDA01E98196500773563 /* shareMapTests.swift */; };
 		3CB5DDAC1E981DA700773563 /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB5DDAB1E981DA700773563 /* mapViewController.swift */; };
 		3CB5DDAE1E98230A00773563 /* LocationTest.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 3CB5DDAD1E98230A00773563 /* LocationTest.gpx */; };
+		4C96D2051E9B0A8500F54AC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C96D2041E9B0A8500F54AC7 /* GoogleService-Info.plist */; };
+		4C96D2071E9B0DAF00F54AC7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C96D2061E9B0DAF00F54AC7 /* WelcomeViewController.swift */; };
+		4C96D2091E9B0DCE00F54AC7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C96D2081E9B0DCE00F54AC7 /* LogInViewController.swift */; };
+		4C96D20B1E9B0DE300F54AC7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C96D20A1E9B0DE300F54AC7 /* SignUpViewController.swift */; };
+		B9267BBFCD833A03140F49CF /* Pods_shareMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34CB183B2EFDA3A8B3161651 /* Pods_shareMap.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03619BF45B29CB14F6425FDA /* Pods-shareMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shareMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-shareMap/Pods-shareMap.debug.xcconfig"; sourceTree = "<group>"; };
+		34CB183B2EFDA3A8B3161651 /* Pods_shareMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shareMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CB5DD861E98196500773563 /* shareMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shareMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CB5DD891E98196500773563 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CB5DD901E98196500773563 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -38,6 +45,11 @@
 		3CB5DDA21E98196500773563 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CB5DDAB1E981DA700773563 /* mapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
 		3CB5DDAD1E98230A00773563 /* LocationTest.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LocationTest.gpx; sourceTree = "<group>"; };
+		4C96D2041E9B0A8500F54AC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4C96D2061E9B0DAF00F54AC7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		4C96D2081E9B0DCE00F54AC7 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		4C96D20A1E9B0DE300F54AC7 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		91F3122896FA5F63B9C3A764 /* Pods-shareMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shareMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-shareMap/Pods-shareMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9267BBFCD833A03140F49CF /* Pods_shareMap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25A393FC02A359D49D3BC3CB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				03619BF45B29CB14F6425FDA /* Pods-shareMap.debug.xcconfig */,
+				91F3122896FA5F63B9C3A764 /* Pods-shareMap.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		3CB5DD7D1E98196400773563 = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +87,8 @@
 				3CB5DD881E98196500773563 /* shareMap */,
 				3CB5DD9F1E98196500773563 /* shareMapTests */,
 				3CB5DD871E98196500773563 /* Products */,
+				25A393FC02A359D49D3BC3CB /* Pods */,
+				49D4BC93414805ACD142086A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,11 +104,15 @@
 		3CB5DD881E98196500773563 /* shareMap */ = {
 			isa = PBXGroup;
 			children = (
+				4C96D2061E9B0DAF00F54AC7 /* WelcomeViewController.swift */,
+				4C96D20A1E9B0DE300F54AC7 /* SignUpViewController.swift */,
+				4C96D2081E9B0DCE00F54AC7 /* LogInViewController.swift */,
 				3CB5DDAB1E981DA700773563 /* mapViewController.swift */,
 				3CB5DD891E98196500773563 /* AppDelegate.swift */,
 				3CB5DD8F1E98196500773563 /* Main.storyboard */,
 				3CB5DD921E98196500773563 /* Assets.xcassets */,
 				3CB5DD941E98196500773563 /* LaunchScreen.storyboard */,
+				4C96D2041E9B0A8500F54AC7 /* GoogleService-Info.plist */,
 				3CB5DD971E98196500773563 /* Info.plist */,
 			);
 			path = shareMap;
@@ -99,6 +127,14 @@
 			path = shareMapTests;
 			sourceTree = "<group>";
 		};
+		49D4BC93414805ACD142086A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				34CB183B2EFDA3A8B3161651 /* Pods_shareMap.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +142,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3CB5DDA51E98196500773563 /* Build configuration list for PBXNativeTarget "shareMap" */;
 			buildPhases = (
+				D05E1E31662C9AFD0959755D /* [CP] Check Pods Manifest.lock */,
 				3CB5DD821E98196400773563 /* Sources */,
 				3CB5DD831E98196400773563 /* Frameworks */,
 				3CB5DD841E98196400773563 /* Resources */,
+				DB1E85067C7E15CE3117D379 /* [CP] Embed Pods Frameworks */,
+				7B9628CDF9F553A128E94931 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -185,6 +224,7 @@
 				3CB5DD961E98196500773563 /* LaunchScreen.storyboard in Resources */,
 				3CB5DD931E98196500773563 /* Assets.xcassets in Resources */,
 				3CB5DDAE1E98230A00773563 /* LocationTest.gpx in Resources */,
+				4C96D2051E9B0A8500F54AC7 /* GoogleService-Info.plist in Resources */,
 				3CB5DD911E98196500773563 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,13 +238,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7B9628CDF9F553A128E94931 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shareMap/Pods-shareMap-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D05E1E31662C9AFD0959755D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DB1E85067C7E15CE3117D379 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shareMap/Pods-shareMap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3CB5DD821E98196400773563 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C96D2091E9B0DCE00F54AC7 /* LogInViewController.swift in Sources */,
+				4C96D2071E9B0DAF00F54AC7 /* WelcomeViewController.swift in Sources */,
 				3CB5DD8A1E98196500773563 /* AppDelegate.swift in Sources */,
 				3CB5DDAC1E981DA700773563 /* mapViewController.swift in Sources */,
+				4C96D20B1E9B0DE300F54AC7 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +432,7 @@
 		};
 		3CB5DDA61E98196500773563 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03619BF45B29CB14F6425FDA /* Pods-shareMap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = shareMap/Info.plist;
@@ -353,6 +445,7 @@
 		};
 		3CB5DDA71E98196500773563 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91F3122896FA5F63B9C3A764 /* Pods-shareMap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = shareMap/Info.plist;
@@ -410,6 +503,7 @@
 				3CB5DDA71E98196500773563 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3CB5DDA81E98196500773563 /* Build configuration list for PBXNativeTarget "shareMapTests" */ = {
 			isa = XCConfigurationList;
@@ -418,6 +512,7 @@
 				3CB5DDAA1E98196500773563 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
