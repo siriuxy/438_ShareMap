@@ -11,6 +11,7 @@ import Foundation
 import UIKit
 import CoreLocation
 import MapKit
+import FirebaseAuth
 
 // TODO: programmatically connect map to navigation controller to collectionview controller, which leads to detailed view of an entry.
 
@@ -21,6 +22,23 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     let locationManager = CLLocationManager();
     var coord = CLLocationCoordinate2D();
     // let userLocation = CLLocation();
+    
+    @IBAction func LogOutButton(_ sender: UIButton) {
+        do {
+            try FIRAuth.auth()?.signOut()
+            self.presentHomePage()
+        }
+        catch {
+            print("There was a problem logging out!")
+        }
+    }
+    
+    func presentHomePage () {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let welcomeVC: WelcomeViewController = storyboard.instantiateViewController(withIdentifier: "StartPage") as! WelcomeViewController
+        self.present(welcomeVC, animated: true, completion: nil)
+    }
+    
     @IBAction func whereAmI(_ sender: UIButton) {
         mapView.setCenter(coord, animated: true)
         // TODO: use setRegion to animate!
@@ -29,6 +47,8 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
         
         mapView.delegate = self
         mapView.showsUserLocation = false
