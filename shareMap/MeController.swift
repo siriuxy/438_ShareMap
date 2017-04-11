@@ -51,13 +51,13 @@ class MeController: UIViewController, UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3; // theData.count
+        return 4; // theData.count
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath);
-        if indexPath.row == 1{
+        if indexPath.row != 5{
             let detailedView = Detailed();
             self.navigationController?.pushViewController(detailedView, animated: true);
         }
