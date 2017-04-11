@@ -10,10 +10,18 @@ import UIKit
 
 class Detailed: UIViewController {
     
+    @IBOutlet weak var userIconImg: UIImageView!
+    
+    @IBOutlet weak var postImage: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // setup default post image and user image
+        userIconImg.image = #imageLiteral(resourceName: "francis");
+        postImage.image = #imageLiteral(resourceName: "348s");
     }
     
     override func didReceiveMemoryWarning() {

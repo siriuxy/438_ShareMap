@@ -110,17 +110,17 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             }
             // print (placemarks);
             if (placemarks != nil) {
-                print("p is not nil")
+                // print("p is not nil")
                 for p in placemarks! {
                     // iotDataManager.publishString(p.compactAddress!, onTopic: "address", qoS:.messageDeliveryAttemptedAtMostOnce)
                     if self.lastAnnotation != nil{
                         self.mapView.removeAnnotation(self.lastAnnotation!);
                     }
-                    print("decoded:\(p.compactAddress!)");
+                    // print("decoded:\(p.compactAddress!)");
                     let myHome = locations.last!
                     var myHomePin = MKPointAnnotation()
                     myHomePin.subtitle = p.compactAddress! // to be changed to your reversed GeoCode
-                    print(p);
+                    // print(p);
                     myHomePin.coordinate = myHome.coordinate;
                     myHomePin.title = "Your location"
                     self.mapView.addAnnotation(myHomePin)
@@ -130,10 +130,10 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 }
             }
             if (placemarks?.count)! > 0 {
-                print(placemarks![0].locality ?? "failed to fetch")
+               //  print(placemarks![0].locality ?? "failed to fetch")
             }
             else {
-                print("Problem with the data received from geocoder")
+               // print("Problem with the data received from geocoder")
             }
         })
         }

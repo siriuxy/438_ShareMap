@@ -46,13 +46,21 @@ class MeController: UIViewController, UITableViewDataSource, UITableViewDelegate
         
         let cell =  UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         
-        cell.textLabel!.text = theData[indexPath.row]
+        cell.textLabel!.text = "testPost\(indexPath.row)";//theData[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return theData.count
+        return 3; // theData.count
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath);
+        if indexPath.row == 1{
+            let detailedView = Detailed();
+            self.navigationController?.pushViewController(detailedView, animated: true);
+        }
     }
     
     @IBAction func addNote(_ sender: UIButton) {
