@@ -18,6 +18,11 @@
 		4C96D2071E9B0DAF00F54AC7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C96D2061E9B0DAF00F54AC7 /* WelcomeViewController.swift */; };
 		4C96D2091E9B0DCE00F54AC7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C96D2081E9B0DCE00F54AC7 /* LogInViewController.swift */; };
 		4C96D20B1E9B0DE300F54AC7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C96D20A1E9B0DE300F54AC7 /* SignUpViewController.swift */; };
+		6851EBFA1E9C27E700DED538 /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851EBF91E9C27E700DED538 /* NoteCell.swift */; };
+		6851EBFC1E9C291100DED538 /* Detailed.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6851EBFB1E9C291100DED538 /* Detailed.xib */; };
+		6851EBFE1E9C29EA00DED538 /* Detailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851EBFD1E9C29EA00DED538 /* Detailed.swift */; };
+		6851EC061E9C536900DED538 /* MeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851EC051E9C536900DED538 /* MeController.swift */; };
+		6851EC081E9C5DDB00DED538 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851EC071E9C5DDB00DED538 /* CosmosDistrib.swift */; };
 		B9267BBFCD833A03140F49CF /* Pods_shareMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34CB183B2EFDA3A8B3161651 /* Pods_shareMap.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +54,11 @@
 		4C96D2061E9B0DAF00F54AC7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		4C96D2081E9B0DCE00F54AC7 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		4C96D20A1E9B0DE300F54AC7 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		6851EBF91E9C27E700DED538 /* NoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
+		6851EBFB1E9C291100DED538 /* Detailed.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Detailed.xib; sourceTree = "<group>"; };
+		6851EBFD1E9C29EA00DED538 /* Detailed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detailed.swift; sourceTree = "<group>"; };
+		6851EC051E9C536900DED538 /* MeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeController.swift; sourceTree = "<group>"; };
+		6851EC071E9C5DDB00DED538 /* CosmosDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
 		91F3122896FA5F63B9C3A764 /* Pods-shareMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shareMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-shareMap/Pods-shareMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,10 +120,15 @@
 				3CB5DDAB1E981DA700773563 /* mapViewController.swift */,
 				3CB5DD891E98196500773563 /* AppDelegate.swift */,
 				3CB5DD8F1E98196500773563 /* Main.storyboard */,
+				6851EC071E9C5DDB00DED538 /* CosmosDistrib.swift */,
 				3CB5DD921E98196500773563 /* Assets.xcassets */,
 				3CB5DD941E98196500773563 /* LaunchScreen.storyboard */,
 				4C96D2041E9B0A8500F54AC7 /* GoogleService-Info.plist */,
 				3CB5DD971E98196500773563 /* Info.plist */,
+				6851EBF91E9C27E700DED538 /* NoteCell.swift */,
+				6851EBFB1E9C291100DED538 /* Detailed.xib */,
+				6851EBFD1E9C29EA00DED538 /* Detailed.swift */,
+				6851EC051E9C536900DED538 /* MeController.swift */,
 			);
 			path = shareMap;
 			sourceTree = "<group>";
@@ -222,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CB5DD961E98196500773563 /* LaunchScreen.storyboard in Resources */,
+				6851EBFC1E9C291100DED538 /* Detailed.xib in Resources */,
 				3CB5DD931E98196500773563 /* Assets.xcassets in Resources */,
 				3CB5DDAE1E98230A00773563 /* LocationTest.gpx in Resources */,
 				4C96D2051E9B0A8500F54AC7 /* GoogleService-Info.plist in Resources */,
@@ -292,8 +308,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C96D2091E9B0DCE00F54AC7 /* LogInViewController.swift in Sources */,
+				6851EBFE1E9C29EA00DED538 /* Detailed.swift in Sources */,
 				4C96D2071E9B0DAF00F54AC7 /* WelcomeViewController.swift in Sources */,
+				6851EC061E9C536900DED538 /* MeController.swift in Sources */,
 				3CB5DD8A1E98196500773563 /* AppDelegate.swift in Sources */,
+				6851EC081E9C5DDB00DED538 /* CosmosDistrib.swift in Sources */,
+				6851EBFA1E9C27E700DED538 /* NoteCell.swift in Sources */,
 				3CB5DDAC1E981DA700773563 /* mapViewController.swift in Sources */,
 				4C96D20B1E9B0DE300F54AC7 /* SignUpViewController.swift in Sources */,
 			);
