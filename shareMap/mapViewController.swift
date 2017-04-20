@@ -22,6 +22,9 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var currentUser = ""
     //var currentLocation =
     
+    // init database to access the location.
+    let myMapUser = mapUser();
+    
     let locationManager = CLLocationManager();
     var coord = CLLocationCoordinate2D();
     // let userLocation = CLLocation();
@@ -80,6 +83,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     // record the last MKAnnotation, and delete it upon refreshing!
     
     var lastAnnotation:MKAnnotation?
+    var lastCLLoc:CLLocation?
     var delayConter = 3;
     // var decodedAddr = ""
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -103,9 +107,17 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         // http://stackoverflow.com/questions/27495328/reverse-geocode-location-in-swift
         let geoCoder = CLGeocoder()
         
-        // TODO: add distance change -> Reverse Geo query
+        // added distance change -> Reverse Geo query if it does not change more than 10 m we ignore it
         // async trigger MKAnno re-rendering
-        if delayConter % 5 == 0 {
+        
+        if let unwrappedLastLoc = lastCLLoc {
+            let dist = unwrappedLastLoc.distance(from: locations.last!);
+            if dist < 15 {
+                return;
+            }
+        }
+        //if delayConter % 5 == 0 {
+        if true{
         geoCoder.reverseGeocodeLocation(locations.last!, completionHandler: {(placemarks, error) -> Void in
             if error != nil {
                 print("Reverse geocoder failed with error" + (error?.localizedDescription)!)
@@ -130,6 +142,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     // let MKPAArr = [myHomePin]
                     self.mapView.selectAnnotation(myHomePin, animated: false)
                     self.lastAnnotation = myHomePin;
+                    self.lastCLLoc = myHome;
                 }
             }
             if (placemarks?.count)! > 0 {
@@ -141,9 +154,6 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         })
         }
         delayConter += 1;
-
-
-    
     }
     
     // this sets the MKAV to display MKA
