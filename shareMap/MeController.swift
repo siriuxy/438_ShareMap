@@ -97,7 +97,7 @@ class MeController: UIViewController, UITableViewDataSource, UITableViewDelegate
             noteNumber = all.count
             var title = " "
             for item in all{
-                title = String(item[noteId]) + " " + String(item[text.substring(5)])
+                title = String(item[noteId]) + " " + String(item[text])
                 noteTitle.append(title)
                 
             }

@@ -87,6 +87,16 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var delayConter = 3;
     // var decodedAddr = ""
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // added distance change -> Reverse Geo query if it does not change more than 10 m we ignore it
+        // async trigger MKAnno re-rendering
+        // quick fix is to put this at the beginning of the function.
+        if let unwrappedLastLoc = lastCLLoc {
+            let dist = unwrappedLastLoc.distance(from: locations.last!);
+            print(dist);
+            if dist < 100 {
+                return;
+            }
+        }
         // we know there is at least 1 element in the array!
         // userLocation = locations.last!
         // lat="38.63779096" lon="-90.3429794">
@@ -107,15 +117,15 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         // http://stackoverflow.com/questions/27495328/reverse-geocode-location-in-swift
         let geoCoder = CLGeocoder()
         
-        // added distance change -> Reverse Geo query if it does not change more than 10 m we ignore it
-        // async trigger MKAnno re-rendering
-        
-        if let unwrappedLastLoc = lastCLLoc {
-            let dist = unwrappedLastLoc.distance(from: locations.last!);
-            if dist < 15 {
-                return;
-            }
-        }
+//        if let unwrappedLastLoc = lastCLLoc {
+//            let dist = unwrappedLastLoc.distance(from: locations.last!);
+//            print(dist);
+//            if dist < 1000 {
+//                return;
+//            }
+//        }
+
+        print ("hey i'm not returning");
         //if delayConter % 5 == 0 {
         if true{
         geoCoder.reverseGeocodeLocation(locations.last!, completionHandler: {(placemarks, error) -> Void in
@@ -138,11 +148,21 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     // print(p);
                     myHomePin.coordinate = myHome.coordinate;
                     myHomePin.title = "Your location"
+                    
+                    // TODO: optimize using addAnno([]);
+                    self.mapView.removeAnnotations(self.mapView.annotations);
                     self.mapView.addAnnotation(myHomePin)
+
+                    // fetch surroundings;
+                    var otherAnnotations = self.myMapUser.lookAround(location: myHome.coordinate);
+                    for otherAnnotation in otherAnnotations{
+                        self.mapView.addAnnotation(otherAnnotation);
+                    }
                     // let MKPAArr = [myHomePin]
                     self.mapView.selectAnnotation(myHomePin, animated: false)
                     self.lastAnnotation = myHomePin;
                     self.lastCLLoc = myHome;
+                    print ("lol new tag");
                 }
             }
             if (placemarks?.count)! > 0 {
@@ -162,15 +182,34 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         if (annotation is MKUserLocation) {
             //if annotation is not an MKPointAnnotation (eg. MKUserLocation),
             //return nil so map draws default view for it (eg. blue dot)...
-            return nil
+            return MKAnnotationView();
         }
         
-        let reuseId = "test"
+
         
+        let reuseId = "test"
+        let reuseId2 = "test2"
+        var anView2 = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId2)
+        if anView2 == nil {
+            anView2 = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            anView2?.image = "😆".image();
+            // perhaps use "UIImage" average color as a preview.
+            // radius to define visible area. Freshness (updated time) to define the size.
+            anView2?.canShowCallout = true
+            // whole bubble as a clickable
+            //https://github.com/koogawa/MKMapViewSample/blob/master/MKMapViewSample/ImageViewController.swift
+            let rightButton: AnyObject! = UIButton(type: UIButtonType.detailDisclosure)
+            anView2?.rightCalloutAccessoryView = rightButton as? UIView
+        }
+        else {
+            //we are re-using a view, update its annotation reference...
+            anView2?.annotation = annotation
+        }
+
         var anView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
         if anView == nil {
             anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            // anView?.image = #imageLiteral(resourceName: "first")
+            anView?.image = "🍖".image();
             // perhaps use "UIImage" average color as a preview.
             // radius to define visible area. Freshness (updated time) to define the size.
             anView?.canShowCallout = true
@@ -183,9 +222,15 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             //we are re-using a view, update its annotation reference...
             anView?.annotation = annotation
         }
+        // TODO: add support for different type of interests!
         
-        return anView
-
+        if lastAnnotation != nil {
+            if lastAnnotation!.coordinate.longitude == annotation.coordinate.longitude && lastAnnotation!.coordinate.latitude == annotation.coordinate.latitude {
+                return anView2;
+            }
+        }
+        
+        return anView;
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -226,6 +271,21 @@ extension CLPlacemark {
         }
         
         return nil
+    }
+    
+}
+//http://stackoverflow.com/questions/38809425/convert-apple-emoji-string-to-uiimage 
+extension String {
+    func image() -> UIImage {
+        let size = CGSize(width: 30, height: 35)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0);
+        UIColor.clear.set();
+        let rect = CGRect(origin: CGPoint.zero, size: size)
+        UIRectFill(CGRect(origin: CGPoint.zero, size: size))
+        (self as NSString).draw(in: rect, withAttributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 30)])
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
     }
     
 }
