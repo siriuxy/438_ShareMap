@@ -11,6 +11,7 @@
 		0D0802F91EA6CD8D00F84A49 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0802F71EA6CD8D00F84A49 /* MoreViewController.swift */; };
 		0D0802FA1EA6CD8D00F84A49 /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D0802F81EA6CD8D00F84A49 /* MoreViewController.xib */; };
 		0DA37A371EA5173E0044E3AA /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DA37A361EA5173E0044E3AA /* libsqlite3.0.tbd */; };
+		3C6AF1CF1EA8400B00DE7A6D /* mapUsersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6AF1CE1EA8400B00DE7A6D /* mapUsersModel.swift */; };
 		3CB5DD8A1E98196500773563 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB5DD891E98196500773563 /* AppDelegate.swift */; };
 		3CB5DD911E98196500773563 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CB5DD8F1E98196500773563 /* Main.storyboard */; };
 		3CB5DD931E98196500773563 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CB5DD921E98196500773563 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		0D0802F81EA6CD8D00F84A49 /* MoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreViewController.xib; sourceTree = "<group>"; };
 		0DA37A361EA5173E0044E3AA /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		34CB183B2EFDA3A8B3161651 /* Pods_shareMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shareMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C6AF1CE1EA8400B00DE7A6D /* mapUsersModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapUsersModel.swift; sourceTree = "<group>"; };
 		3CB5DD861E98196500773563 /* shareMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shareMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CB5DD891E98196500773563 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CB5DD901E98196500773563 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				4C96D20A1E9B0DE300F54AC7 /* SignUpViewController.swift */,
 				4C96D2081E9B0DCE00F54AC7 /* LogInViewController.swift */,
 				3CB5DDAB1E981DA700773563 /* mapViewController.swift */,
+				3C6AF1CE1EA8400B00DE7A6D /* mapUsersModel.swift */,
 				3CB5DD891E98196500773563 /* AppDelegate.swift */,
 				3CB5DD8F1E98196500773563 /* Main.storyboard */,
 				0D0802F71EA6CD8D00F84A49 /* MoreViewController.swift */,
@@ -331,6 +334,7 @@
 				6851EC061E9C536900DED538 /* MeController.swift in Sources */,
 				3CB5DD8A1E98196500773563 /* AppDelegate.swift in Sources */,
 				6851EC081E9C5DDB00DED538 /* CosmosDistrib.swift in Sources */,
+				3C6AF1CF1EA8400B00DE7A6D /* mapUsersModel.swift in Sources */,
 				6851EBFA1E9C27E700DED538 /* NoteCell.swift in Sources */,
 				3CB5DDAC1E981DA700773563 /* mapViewController.swift in Sources */,
 				0D0802F91EA6CD8D00F84A49 /* MoreViewController.swift in Sources */,

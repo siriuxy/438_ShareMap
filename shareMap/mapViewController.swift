@@ -197,7 +197,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 extension CLPlacemark {
     
     var compactAddress: String? {
-        if let name = name {
+        if name != nil {
             // var result = name
             var result = ""
             if let street = thoroughfare {
