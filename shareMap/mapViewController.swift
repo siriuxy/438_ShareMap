@@ -19,6 +19,9 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     @IBOutlet weak var mapView: MKMapView!
     
+    var currentUser = ""
+    //var currentLocation =
+    
     let locationManager = CLLocationManager();
     var coord = CLLocationCoordinate2D();
     // let userLocation = CLLocation();

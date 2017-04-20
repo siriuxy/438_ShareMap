@@ -8,8 +8,13 @@
 
 import UIKit
 import FirebaseAuth
+import SQLite
 
 class SignUpViewController: UIViewController {
+    
+    static var sharedInstance = DBUtil()
+    var db:Connection?
+    let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
 
     @IBOutlet weak var emailTextField: UITextField!
     
@@ -47,6 +52,24 @@ class SignUpViewController: UIViewController {
                     return
                 }
                 print("Successful Create Account!")
+                
+                // insert the user account into the database
+                do{
+                    self.db = try Connection("\(self.path)/shareMap.sqlite3")
+                    let users = Table("User")
+                    let userName = Expression<String?>("name")
+                    let userPassword = Expression<String>("password")
+                    let userProfile = Expression<String>("profile")
+                    
+                    try self.db?.run(users.insert(userName <- self.emailTextField.text , userPassword <- self.passwordTextField.text!, userProfile <- "no profile"))
+                    
+//                    for user in try self.db!.prepare(users) {
+//                        print("----------------------name: \(user[userName])")
+//                    }
+                }
+                catch{
+                    print(error)
+                }
                 self.presentHomePage()
             })
         }

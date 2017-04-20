@@ -6,7 +6,7 @@ target 'shareMap' do
   use_frameworks!
 
   # Pods for shareMap
-
+  pod 'SQLite.swift', '~> 0.11.3'
   pod 'Firebase/Core'
   pod 'Firebase/Auth’
 

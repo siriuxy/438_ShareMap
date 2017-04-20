@@ -19,6 +19,8 @@ class WelcomeViewController: UIViewController {
         if FIRAuth.auth()?.currentUser != nil {
             self.presentLogin()
         }
+        
+        DBUtil.sharedInstance.getById()
     }
     
     override func viewDidAppear(_ animated: Bool) {

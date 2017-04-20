@@ -6,8 +6,25 @@
 //  Copyright © 2017 Likai Yan. All rights reserved.
 //
 import UIKit
+import SQLite
 
 class MeController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    
+    var currentUser = "currentUser"
+    
+    var noteNumber = 0  //currentUser's notes
+    
+    var noteTitle : [String] = []
+    
+    static var sharedInstance = DBUtil()
+    var db:Connection?
+    let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+    let notes = Table("Note")
+    let noteId = Expression<Int64>("noteId")
+    let userForNote = Expression<String>("user")
+    let text = Expression<String>("text")
+
     
     
     
@@ -46,17 +63,17 @@ class MeController: UIViewController, UITableViewDataSource, UITableViewDelegate
         
         let cell =  UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         
-        cell.textLabel!.text = "testPost\(indexPath.row)";//theData[indexPath.row]
+        cell.textLabel!.text = noteTitle[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3; // theData.count
+        return noteNumber
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath);
+        
         if indexPath.row == 1{
             let detailedView = Detailed();
             self.navigationController?.pushViewController(detailedView, animated: true);
@@ -69,6 +86,30 @@ class MeController: UIViewController, UITableViewDataSource, UITableViewDelegate
     
     
     override func viewWillAppear(_ animated: Bool) {
+      
+        do{
+            db = try Connection("\(path)/shareMap.sqlite3")
+            let query = notes.select(noteId,text)
+                .filter(userForNote == currentUser)
+
+            let all = Array(try (db?.prepare(query))!)
+            
+            noteNumber = all.count
+            var title = " "
+            for item in all{
+                title = String(item[noteId]) + " " + String(item[text.substring(5)])
+                noteTitle.append(title)
+                
+            }
+            
+//            for note in try db?.prepare(note.filter(userForNoteId == 1)!)! {
+//                print("===========================id: \(note[noteId])")
+//                // id: 1, email: alice@mac.com
+//            }
+        }
+        catch{
+            print(error)
+        }
        
         tableView.reloadData()
     }
@@ -76,12 +117,7 @@ class MeController: UIViewController, UITableViewDataSource, UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        
         setupTableView()
-        //fetchData()
-        
-        
     }
     
     override func didReceiveMemoryWarning() {

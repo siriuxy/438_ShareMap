@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xun-8g-ELl">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xun-8g-ELl">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -116,6 +116,13 @@
                             <outlet property="delegate" destination="YTs-QD-vmC" id="9gt-jE-283"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" id="kCX-z3-eIf">
+                        <barButtonItem key="rightBarButtonItem" title="Add Note" id="9Kt-LQ-xWt">
+                            <connections>
+                                <segue destination="uzH-MY-ZoZ" kind="show" id="JYx-VD-DGu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQY-I9-7Ia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -192,7 +199,7 @@
         <!--Add Note-->
         <scene sceneID="Enb-1l-8g5">
             <objects>
-                <viewController id="uzH-MY-ZoZ" sceneMemberID="viewController">
+                <viewController id="uzH-MY-ZoZ" customClass="AddNoteViewController" customModule="shareMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bgu-c7-FYA"/>
                         <viewControllerLayoutGuide type="bottom" id="cwS-wk-GE5"/>
@@ -210,25 +217,35 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Private Post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihs-52-bdw">
-                                <rect key="frame" x="176" y="351" width="103" height="45"/>
+                                <rect key="frame" x="176" y="327" width="103" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uzl-a7-fqr">
-                                <rect key="frame" x="287" y="358" width="51" height="31"/>
+                                <rect key="frame" x="287" y="334" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1F-wy-PXY">
-                                <rect key="frame" x="271" y="542" width="65" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Publish"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQt-yY-872">
-                                <rect key="frame" x="30" y="542" width="87" height="30"/>
+                                <rect key="frame" x="30" y="580" width="87" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add Picture"/>
+                                <connections>
+                                    <action selector="importImage:" destination="uzH-MY-ZoZ" eventType="touchUpInside" id="8md-cC-bma"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0eT-ii-hLk">
+                                <rect key="frame" x="30" y="380" width="306" height="192"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1F-wy-PXY">
+                                <rect key="frame" x="271" y="578" width="65" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Publish"/>
+                                <connections>
+                                    <action selector="publishNote:" destination="uzH-MY-ZoZ" eventType="touchUpInside" id="yGM-Iw-gHa"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -240,15 +257,19 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="More"/>
                                 <connections>
-                                    <segue destination="fin-yB-23X" kind="show" id="HoU-z4-L2J"/>
+                                    <action selector="more:" destination="uzH-MY-ZoZ" eventType="touchUpInside" id="iWD-cr-tmB"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="Text" destination="skg-UV-XJf" id="4os-rk-YD1"/>
+                        <outlet property="myImageView" destination="0eT-ii-hLk" id="Fnm-Mw-urT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fgy-KE-bGX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3180" y="393.55322338830587"/>
+            <point key="canvasLocation" x="3037.5999999999999" y="393.55322338830587"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="gh0-Ud-0Rg">
@@ -660,4 +681,7 @@
         <image name="map" width="25" height="25"/>
         <image name="me" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="JYx-VD-DGu"/>
+    </inferredMetricsTieBreakers>
 </document>
