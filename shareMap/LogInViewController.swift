@@ -9,57 +9,22 @@
 import UIKit
 import FirebaseAuth
 
-class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
+class LogInViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-            let fblogin: FBSDKLoginButton = FBSDKLoginButton()
-            self.view.addSubview(fblogin)
-            fblogin.center = self.view.center
-            fblogin.readPermissions = ["public_profile", "email", "user_friends"]
-            fblogin.delegate = self
-        
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    // Facebook Delegate Methods
-    
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        print("User Logged In")
-        
-        if ((error) != nil)
-        {
-            // Process error
-        }
-        else if result.isCancelled {
-            // Handle cancellations
-        }
-        else {
-            // If you ask for multiple permissions at once, you
-            // should check if specific permissions missing
-            if result.grantedPermissions.contains("email")
-            {
-                
-            }
-        }
-        print("Successful Login!")
-        self.presentLogin()
-    }
-    
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        print("User Logged Out")
-    }
-   
     
     @IBAction func LoginButton(_ sender: Any) {
         // No email input or password input

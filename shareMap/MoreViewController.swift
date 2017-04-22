@@ -13,10 +13,15 @@ class MoreViewController: UIViewController,UINavigationControllerDelegate {
     
     @IBOutlet weak var date: UIDatePicker!
 
-    @IBOutlet weak var Rate: UILabel!
+    @IBOutlet weak var rate: CosmosView!
     
     @IBAction func PickDate(_ sender: UIDatePicker) {
+        let format = DateFormatter()
+        format.dateFormat = "MMMM dd, YYYY"
+        dataBack[0] = format.string(from: date.date)
         
+        format.dateFormat = "hh:mm a"
+        dataBack[1] = format.string(from: date.date)
     }
     
     //store the push back data: date and rate for the location
@@ -27,6 +32,18 @@ class MoreViewController: UIViewController,UINavigationControllerDelegate {
         navigationController?.delegate = self
 
         // Do any additional setup after loading the view.
+        let format = DateFormatter()
+        format.dateFormat = "MMMM dd, YYYY"
+        dataBack.append(format.string(from: date.date))
+        
+        format.dateFormat = "hh:mm a"
+        dataBack.append(format.string(from: date.date))
+        
+        let rating = Int(rate.rating.rounded())
+        dataBack.append(String(rating))
+        
+        print(dataBack[0])
+        print(dataBack[1])
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,6 +67,8 @@ class MoreViewController: UIViewController,UINavigationControllerDelegate {
 
 extension MoreViewController {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        let rating = Int(rate.rating.rounded())
+        dataBack[2] = String(rating)
         (viewController as? AddNoteViewController)?.dataBack = dataBack
     }
 }

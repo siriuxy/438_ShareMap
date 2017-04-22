@@ -10,7 +10,7 @@ import UIKit
 
 class NoteCell: UICollectionViewCell {
     
-    @IBOutlet weak var noteLabel: UILabel!
-    
-    @IBOutlet weak var noteImg: UIImageView!
+    @IBOutlet weak var imageButton: UIButton!
+
+    @IBOutlet weak var userName: UILabel!
 }
