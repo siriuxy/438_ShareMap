@@ -108,7 +108,21 @@ class AddNoteViewController: UIViewController, UIImagePickerControllerDelegate, 
             //let id =
             try db?.run(notes.insert(userForNote <- currentUser,locationIdForNote <- Int64(currentLocation), notePicure <- "jph",text <- Text.text,date <- dataBack[0],rateForLocation <- dataBack[1],tag <- "food",isPrivate <- false))
 
-           
+            
+            /*
+            if(fb==true){
+             let content : FBSDKShareLinkContent = FBSDKShareLinkContent()
+             content.contentURL = NSURL(string: "<INSERT STRING HERE>")
+             content.contentTitle = "<INSERT STRING HERE>"
+             content.contentDescription = "<INSERT STRING HERE>"
+             content.imageURL = NSURL(string: "<INSERT STRING HERE>")
+ 
+             let button : FBSDKShareButton = FBSDKShareButton()
+             button.shareContent = content
+             button.frame = CGRectMake((UIScreen.mainScreen().bounds.width - 100) * 0.5, 50, 100, 25)
+             self.view.addSubview(button)
+            }*/
+ 
         }
         catch{
             print(error)
