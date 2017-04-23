@@ -11,6 +11,6 @@ import UIKit
 class NoteCell: UICollectionViewCell {
     
     @IBOutlet weak var imageButton: UIButton!
-
+    
     @IBOutlet weak var userName: UILabel!
 }

@@ -20,8 +20,13 @@ class NotesCollectionViewController: UICollectionViewController {
     
     var noteNumber = 0  //currentUser's notes
     
+    //
+    // I create a new struct for note (see NotesDetail.swift)
+    // noteTitle is all the note fetched from our database
+    //
     var noteTitle : [Notes] = []
     
+    // Fetching Data
     static var sharedInstance = DBUtil()
     var db:Connection?
     let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
@@ -30,15 +35,27 @@ class NotesCollectionViewController: UICollectionViewController {
     let userForNote = Expression<String>("user")
     let text = Expression<String>("text")
     
+    let date = Expression<String>("date")
+    let rateForLocation = Expression<String>("rate")
+    
+    let location = Table("Location")
+    let locationId = Expression<Int64>("locationId")
+    let longitude = Expression<String?>("longitude")
+    let latitude = Expression<String>("latitude")
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let svc = segue.destination as! DetailsViewController
-        let buttonSender = sender as! UIButton
-        let index = buttonSender.tag
-        svc.noteDetail = noteTitle[index]
+        if segue.identifier == "details" {
+            let svc = segue.destination as! DetailsViewController
+            let buttonSender = sender as! UIButton
+            let index = buttonSender.tag
+            svc.noteDetail = noteTitle[index]
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         noteTitle.removeAll()
+        
         do{
             db = try Connection("\(path)/shareMap.sqlite3")
             let query = notes.select(noteId,text)
@@ -52,7 +69,16 @@ class NotesCollectionViewController: UICollectionViewController {
                 // Get Note from Data Base
                 let noteID = String(item[noteId])
                 let noteText = String(item[text])
-                noteTitle.append(Notes(noteID: noteID, text: noteText!, userName: "UserName", rating: "3", date: "April 19, 2017", time: "11:45 PM", image: #imageLiteral(resourceName: "Image")))
+                
+                //
+                // This is to create new noteTitle. I have already got noteId and text.
+                // I need userName, rate, date and image. Up to now, I just default these.
+                // Also, we need to do a location comparasion base on longitude and latitude.
+                //
+                noteTitle.append(Notes(noteID: noteID, text: noteText!, userName: "UserName", rating: "3", date: "April 22, 2017", image: #imageLiteral(resourceName: "Image")))
+                
+                //let longi = String(describing: location[longitude])
+                
             }
             //            for note in try db?.prepare(note.filter(userForNoteId == 1)!)! {
             //                print("===========================id: \(note[noteId])")

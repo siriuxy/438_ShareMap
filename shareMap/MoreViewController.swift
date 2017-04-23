@@ -67,8 +67,6 @@ class MoreViewController: UIViewController,UINavigationControllerDelegate {
 
 extension MoreViewController {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        let rating = Int(rate.rating.rounded())
-        dataBack[2] = String(rating)
         (viewController as? AddNoteViewController)?.dataBack = dataBack
     }
 }

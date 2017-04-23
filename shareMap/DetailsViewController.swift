@@ -17,7 +17,6 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var image: UIImageView!
     
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
     @IBOutlet weak var userLabel: UILabel!
 
@@ -29,7 +28,6 @@ class DetailsViewController: UIViewController {
         
         textField.text = noteDetail.text
         dateLabel.text = noteDetail.date
-        timeLabel.text = noteDetail.time
         rateLabel.text = noteDetail.rating
         userLabel.text = noteDetail.userName
         

@@ -14,6 +14,5 @@ struct Notes {
     var userName: String
     var rating: String
     var date: String
-    var time: String
     var image: UIImage
 }
