@@ -51,9 +51,10 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
             {
                 
             }
+            print("Successful Login!")
+            self.presentLogin()
         }
-        print("Successful Login!")
-        self.presentLogin()
+       
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
