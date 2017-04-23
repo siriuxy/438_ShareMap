@@ -187,11 +187,13 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
 
         
-        let reuseId = "test"
         let reuseId2 = "test2"
+        let reuseId = "test"
+        
         var anView2 = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId2)
+        
         if anView2 == nil {
-            anView2 = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            anView2 = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId2)
             anView2?.image = "😆".image();
             // perhaps use "UIImage" average color as a preview.
             // radius to define visible area. Freshness (updated time) to define the size.
