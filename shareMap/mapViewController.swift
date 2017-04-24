@@ -37,9 +37,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBAction func LogOutButton(_ sender: UIButton) {
         do {
             try FIRAuth.auth()?.signOut()
-            if(FBSDKAccessToken.current() != nil){
-                FBSDKLo
-            }
+            
             self.presentHomePage()
         }
         catch {
@@ -55,7 +53,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     @IBAction func whereAmI(_ sender: UIButton) {
         mapView.setCenter(coord, animated: true)
-        // TODO: use setRegion to animate!
+        mapView.zoomToUserLocation();
     }
     
     override func viewDidLoad() {

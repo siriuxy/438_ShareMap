@@ -14,6 +14,9 @@ class MoreViewController: UIViewController,UINavigationControllerDelegate {
     @IBOutlet weak var date: UIDatePicker!
 
     @IBOutlet weak var rate: CosmosView!
+    var image:String!
+    
+    var shdp:String!
     
     @IBAction func PickDate(_ sender: UIDatePicker) {
         let format = DateFormatter()
@@ -44,6 +47,20 @@ class MoreViewController: UIViewController,UINavigationControllerDelegate {
         
         print(dataBack[0])
         print(dataBack[1])
+        
+        
+        let content : FBSDKShareLinkContent =
+            FBSDKShareLinkContent()
+        //  content.contentURL = NSURL(string: "<INSERT STRING HERE>")
+        //content.contentTitle = "<INSERT STRING HERE>"
+        content.contentDescription=shdp
+        content.imageURL = URL(string: image)
+        
+        let button : FBSDKShareButton = FBSDKShareButton()
+        button.shareContent = content
+        button.frame=CGRect(x: 217, y: 272, width: 80, height: 30)
+        self.view.addSubview(button)
+
     }
 
     override func didReceiveMemoryWarning() {

@@ -97,6 +97,9 @@ class AddNoteViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         navigationController?.pushViewController(more, animated: true)
         
+        more.shdp=Text.text
+        more.image="https://www.pexels.com/photo/landscape-mountains-nature-clouds-1029/"
+        
     }
 
     
