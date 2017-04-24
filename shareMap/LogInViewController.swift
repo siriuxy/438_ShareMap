@@ -18,14 +18,17 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        let accessToken = FBSDKAccessToken.current()
+        if (accessToken == nil)  {
             let fblogin: FBSDKLoginButton = FBSDKLoginButton()
             self.view.addSubview(fblogin)
             fblogin.center = self.view.center
             fblogin.readPermissions = ["public_profile", "email", "user_friends"]
             fblogin.delegate = self
-        
+        }
+        else{
+            self.presentLogin()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,10 +52,10 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
             // should check if specific permissions missing
             if result.grantedPermissions.contains("email")
             {
-                
+                print("Successful Login!")
+                self.presentLogin()
             }
-            print("Successful Login!")
-            self.presentLogin()
+            
         }
        
     }

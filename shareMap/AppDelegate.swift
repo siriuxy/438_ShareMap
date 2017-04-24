@@ -13,10 +13,22 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    struct currLoc{
+        var long: Double = 0;
+        var latitude: Double = 0;
+    }
     
+    var currentLocation:currLoc;
     // http://stackoverflow.com/questions/42192961/add-firapp-configure-to-your-application-initialization-error
     override init() {
+        var duh = currLoc();
+        duh.latitude = 0
+        duh.long = 0;
+        currentLocation = duh;
+    
         super.init()
+        // self.currentLocation.long = 0;
+        // self.currentLocation.latitude = 0;
         FIRApp.configure()
         // not really needed unless you really need it        FIRDatabase.database().persistenceEnabled = true
     }

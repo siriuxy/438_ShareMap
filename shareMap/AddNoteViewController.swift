@@ -8,11 +8,11 @@
 
 import UIKit
 import SQLite
+import MapKit
 
 class AddNoteViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var Text: UITextView!
-    
     var dataBack : [String] = ["2017-04-19","3"]
     
     var currentUser = "currentUser"
@@ -106,6 +106,11 @@ class AddNoteViewController: UIViewController, UIImagePickerControllerDelegate, 
             db = try Connection("\(path)/shareMap.sqlite3")
             
             //let id =
+            
+//            let appD = UIApplication.shared.delegate as! AppDelegate;
+//            appD.currentLocation.latitude = coord.latitude as Double
+//            appD.currentLocation.long
+            
             try db?.run(notes.insert(userForNote <- currentUser,locationIdForNote <- Int64(currentLocation), notePicure <- "jph",text <- Text.text,date <- dataBack[0],rateForLocation <- dataBack[1],tag <- "food",isPrivate <- false))
 
             

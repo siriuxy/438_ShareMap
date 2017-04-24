@@ -20,18 +20,26 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBOutlet weak var mapView: MKMapView!
     
     var currentUser = ""
-    //var currentLocation =
+    // var currentLocation : [Double] = [0,0]
+    
+    
+
+    
     
     // init database to access the location.
     let myMapUser = mapUser();
     
     let locationManager = CLLocationManager();
     var coord = CLLocationCoordinate2D();
+    
     // let userLocation = CLLocation();
     
     @IBAction func LogOutButton(_ sender: UIButton) {
         do {
             try FIRAuth.auth()?.signOut()
+            if(FBSDKAccessToken.current() != nil){
+                FBSDKLo
+            }
             self.presentHomePage()
         }
         catch {
@@ -101,7 +109,14 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         // userLocation = locations.last!
         // lat="38.63779096" lon="-90.3429794">
         coord = locations.last!.coordinate;
+        
+        let appD = UIApplication.shared.delegate as! AppDelegate;
+        appD.currentLocation.latitude = coord.latitude as Double
+        appD.currentLocation.long = coord.longitude as Double
+        
 
+        
+        
         if lastAnnotation != nil{
             var myHomePin = MKPointAnnotation();
             myHomePin.coordinate = coord;
@@ -113,65 +128,65 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             lastAnnotation = myHomePin;
         }
         let coordDisplay = "\(coord.latitude),\(coord.longitude)"
-
+        
         // http://stackoverflow.com/questions/27495328/reverse-geocode-location-in-swift
         let geoCoder = CLGeocoder()
         
-//        if let unwrappedLastLoc = lastCLLoc {
-//            let dist = unwrappedLastLoc.distance(from: locations.last!);
-//            print(dist);
-//            if dist < 1000 {
-//                return;
-//            }
-//        }
-
+        //        if let unwrappedLastLoc = lastCLLoc {
+        //            let dist = unwrappedLastLoc.distance(from: locations.last!);
+        //            print(dist);
+        //            if dist < 1000 {
+        //                return;
+        //            }
+        //        }
+        
         print ("hey i'm not returning");
         //if delayConter % 5 == 0 {
         if true{
-        geoCoder.reverseGeocodeLocation(locations.last!, completionHandler: {(placemarks, error) -> Void in
-            if error != nil {
-                print("Reverse geocoder failed with error" + (error?.localizedDescription)!)
-                return
-            }
-            // print (placemarks);
-            if (placemarks != nil) {
-                // print("p is not nil")
-                for p in placemarks! {
-                    // iotDataManager.publishString(p.compactAddress!, onTopic: "address", qoS:.messageDeliveryAttemptedAtMostOnce)
-                    if self.lastAnnotation != nil{
-                        self.mapView.removeAnnotation(self.lastAnnotation!);
-                    }
-                    // print("decoded:\(p.compactAddress!)");
-                    let myHome = locations.last!
-                    var myHomePin = MKPointAnnotation()
-                    myHomePin.subtitle = p.compactAddress! // to be changed to your reversed GeoCode
-                    // print(p);
-                    myHomePin.coordinate = myHome.coordinate;
-                    myHomePin.title = "Your location"
-                    
-                    // TODO: optimize using addAnno([]);
-                    self.mapView.removeAnnotations(self.mapView.annotations);
-                    self.mapView.addAnnotation(myHomePin)
-
-                    // fetch surroundings;
-                    var otherAnnotations = self.myMapUser.lookAround(location: myHome.coordinate);
-                    for otherAnnotation in otherAnnotations{
-                        self.mapView.addAnnotation(otherAnnotation);
-                    }
-                    // let MKPAArr = [myHomePin]
-                    self.mapView.selectAnnotation(myHomePin, animated: false)
-                    self.lastAnnotation = myHomePin;
-                    self.lastCLLoc = myHome;
-                    print ("lol new tag");
+            geoCoder.reverseGeocodeLocation(locations.last!, completionHandler: {(placemarks, error) -> Void in
+                if error != nil {
+                    print("Reverse geocoder failed with error" + (error?.localizedDescription)!)
+                    return
                 }
-            }
-            if (placemarks?.count)! > 0 {
-               //  print(placemarks![0].locality ?? "failed to fetch")
-            }
-            else {
-               // print("Problem with the data received from geocoder")
-            }
-        })
+                // print (placemarks);
+                if (placemarks != nil) {
+                    // print("p is not nil")
+                    for p in placemarks! {
+                        // iotDataManager.publishString(p.compactAddress!, onTopic: "address", qoS:.messageDeliveryAttemptedAtMostOnce)
+                        if self.lastAnnotation != nil{
+                            self.mapView.removeAnnotation(self.lastAnnotation!);
+                        }
+                        // print("decoded:\(p.compactAddress!)");
+                        let myHome = locations.last!
+                        var myHomePin = MKPointAnnotation()
+                        myHomePin.subtitle = p.compactAddress! // to be changed to your reversed GeoCode
+                        // print(p);
+                        myHomePin.coordinate = myHome.coordinate;
+                        myHomePin.title = "Your location"
+                        
+                        // TODO: optimize using addAnno([]);
+                        self.mapView.removeAnnotations(self.mapView.annotations);
+                        self.mapView.addAnnotation(myHomePin)
+                        
+                        // fetch surroundings;
+                        var otherAnnotations = self.myMapUser.lookAround(location: myHome.coordinate);
+                        for otherAnnotation in otherAnnotations{
+                            self.mapView.addAnnotation(otherAnnotation);
+                        }
+                        // let MKPAArr = [myHomePin]
+                        self.mapView.selectAnnotation(myHomePin, animated: false)
+                        self.lastAnnotation = myHomePin;
+                        self.lastCLLoc = myHome;
+                        print ("lol new tag");
+                    }
+                }
+                if (placemarks?.count)! > 0 {
+                    //  print(placemarks![0].locality ?? "failed to fetch")
+                }
+                else {
+                    // print("Problem with the data received from geocoder")
+                }
+            })
         }
         delayConter += 1;
     }
@@ -184,16 +199,12 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             //return nil so map draws default view for it (eg. blue dot)...
             return MKAnnotationView();
         }
-        
-
-        
-        let reuseId2 = "test2"
         let reuseId = "test"
-        
+        let reuseId2 = "test2"
         var anView2 = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId2)
-        
         if anView2 == nil {
-            anView2 = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId2)
+            anView2 = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            
             anView2?.image = "😆".image();
             // perhaps use "UIImage" average color as a preview.
             // radius to define visible area. Freshness (updated time) to define the size.
@@ -207,11 +218,19 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             //we are re-using a view, update its annotation reference...
             anView2?.annotation = annotation
         }
-
+        
         var anView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
         if anView == nil {
             anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            anView?.image = "🍖".image();
+            let tag = annotation.subtitle!!
+            
+            switch tag{
+            case "food": anView?.image = "🍖".image()
+            case "profile" : anView?.image = "👶".image()
+            case "activity" : anView?.image = "⚽️".image()
+            case "landscape": anView?.image = "🌎".image()
+            default: break
+            }
             // perhaps use "UIImage" average color as a preview.
             // radius to define visible area. Freshness (updated time) to define the size.
             anView?.canShowCallout = true
@@ -265,10 +284,10 @@ extension CLPlacemark {
                 result += ", \(city)"
             }
             /*
-            if let country = country {
-                result += ", \(country)"
-            }
-            */
+             if let country = country {
+             result += ", \(country)"
+             }
+             */
             return result
         }
         
@@ -276,7 +295,7 @@ extension CLPlacemark {
     }
     
 }
-//http://stackoverflow.com/questions/38809425/convert-apple-emoji-string-to-uiimage 
+//http://stackoverflow.com/questions/38809425/convert-apple-emoji-string-to-uiimage
 extension String {
     func image() -> UIImage {
         let size = CGSize(width: 30, height: 35)

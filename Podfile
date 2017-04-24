@@ -9,5 +9,6 @@ target 'shareMap' do
   pod 'SQLite.swift', '~> 0.11.3'
   pod 'Firebase/Core'
   pod 'Firebase/Auth’
+  
 
 end

@@ -35,10 +35,7 @@ class DBUtil{
     let rateForLocation = Expression<String>("rate")
     let tag = Expression<String>("tag")
     let isPrivate = Expression<Bool>("isPrivate")
-    
-    //create the Location table
-    let location = Table("Location")
-    let locationId = Expression<Int64>("locationId")
+
     let longitude = Expression<String?>("longitude")
     let latitude = Expression<String>("latitude")
     
@@ -69,15 +66,13 @@ class DBUtil{
                 t.column(rateForLocation)
                 t.column(tag)
                 t.column(isPrivate)
+                t.column(latitude)
+                t.column(longitude)
+                
                 
             })
             
-            try db?.run(location.create(ifNotExists: true) { t in
-                t.column(locationId, primaryKey: .autoincrement)
-                t.column(longitude)
-                t.column(latitude)
-                
-            })
+
 
 //            try db?.run(users.insert(userId <- 123, userName <- "Alice", userPassword <- "123", userProfile <- "jph"))
 
